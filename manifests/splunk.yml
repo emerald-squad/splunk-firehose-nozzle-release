@@ -123,10 +123,10 @@ instance_groups:
     static_ips:
     - 1.2.3.4
   persistent_disk: 512000
-  stemcell: xenial
+  stemcell: trusty
   vm_type: splunk
 stemcells:
-- alias: xenial
+- alias: trusty
   name: bosh-azure-hyperv-ubuntu-trusty-go_agent
   version: '3586.65'
 update:
