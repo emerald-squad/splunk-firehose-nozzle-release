@@ -14,6 +14,8 @@ templates:
   system_authentication.conf.erb: 	 config/system_local/authentication.conf
   auth_idpCert.pem.erb:                 config/auth/idpCerts/idpCert.pem
   apps_splunk_httpinput_inputs.conf.erb: config/apps_splunk_httpinput_local/inputs.conf
+  apps_splunk_httpinput_props.conf.erb: config/apps_splunk_httpinput_local/props.conf
+  apps_splunk_httpinput_transforms.conf.erb: config/apps_splunk_httpinput_local/transforms.conf
   splunk-launch.conf.erb:                config/splunk-launch.conf
   License.xml.lic.erb:                   config/License.xml.lic
   mycerts_privkey.pem.erb:               config/mycerts/privkey.pem
@@ -151,6 +153,23 @@ properties:
             connection_host = ip
             sourcetype = rfc5424_syslog
             index = my_splunk_index
+    props:
+      default: []
+      description: properties to route from source
+      example: |
+        See https://docs.splunk.com/Documentation/Splunk/6.6.1/Admin/Propsconf
+        - name: rfc5424_syslog
+          transform_name = route_message_there
+    tranforms:
+      default: []
+      description: where to route the logs
+      example: |
+        See https://docs.splunk.com/Documentation/Splunk/6.6.1/Admin/Transformsconf
+        - name: route_message_there
+          options: |
+	    REGEX = CEF
+            DEST_KEY = _MetaData:Index
+            FORMAT = pcf_secret
            
     authentication:
       description: Configuration of Splunk authentication

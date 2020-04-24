@@ -1,0 +1,6 @@
+<% if_p('cf_splunk.props') do |props| %>
+<% props.each do |prop| %>
+[<%= prop['name'] %>]
+TRANSFORMS-all = <%= prop['transform_name'] %>
+<% end %>
+<% end %>

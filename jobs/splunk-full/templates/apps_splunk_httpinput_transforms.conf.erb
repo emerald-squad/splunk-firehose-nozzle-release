@@ -1,0 +1,6 @@
+<% if_p('cf_splunk.transforms') do |transforms| %>
+<% transforms.each do |transform| %>
+[<%= transform['name'] %>]
+<%= transform['options'] %>
+<% end %>
+<% end %>
